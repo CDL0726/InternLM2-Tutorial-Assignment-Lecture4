@@ -11,7 +11,7 @@
 
 ## 第6课 笔记   
 
-### 原理
+### 1. 原理
 - 为什么要微调调大模型： 现有的模型是基座模型 Foundation Model
 
 - Finetune二种范式：增量预训练微调 和 指令跟随微调
@@ -35,7 +35,7 @@
 ![](./XTuner5.png)
 ![](./XTuner6.png)
 
-### XTuner   
+### 2. XTuner   
 
 - XTuner是以配置文件的形式专封装了大部分微调场景，对于0基础的非专业人员也能微调模型；轻量化，对于7B参数量的LLM，最小显存为8GB，消费级显卡就可以微调模型。
 
@@ -62,7 +62,27 @@
 ![](./XTuner12.png)
 ![](./XTuner13.png)
 
-### 8GB显存玩转LLM
+### 3. 8GB显存玩转LLM
+
+- XTuner二种加速优化方案：Flash Attention 和 DeepSpeed ZeRO
+- 优化后，可以明显减少显存的占用。
+
+### 4. InternLM2 1.8B 模型
+
+- 三个版本开源模型：
+    - InternLM2-1.8B : 基础模型，为下游深度适应提供了良好的起点；
+    - InternLM2-chat-1.8B-SFT : 在InternLM2-1.8B 上进行监督微调（SFT）后得到的对话模型；
+    - **InternLM2-Chat-1.8B** :   通过在线RLHF 在InternLM2-chat-1.8B-SFT 之上进一步对齐，表现出更好的指令跟随、聊天体验和函数调用，模型大小为3.78G,
+
+### 5. 多模态LLM     
+
+- 给LLM装上电子眼，多模态是识图，不是生图，
+- LLaVA方案 Image Projector
+- 快速上手
+
+![](./XTuner14.png)
+![](./XTuner15.png)
+
 
 ## 第6课 作业   
 
