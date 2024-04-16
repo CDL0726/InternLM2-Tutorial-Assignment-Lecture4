@@ -274,7 +274,72 @@ xtuner train /root/ft/config/internlm2_1_8b_qlora_alpaca_e3_copy.py --work-dir /
 
 ![](./XTuner24.png)
 
+### 2.5 模型转换、整合、测试及部署    
 
+#### 2.5.1 模型转换
+
+模型转换的本质其实就是将原本使用 Pytorch 训练出来的模型权重文件转换为目前通用的 Huggingface 格式文件，那么我们可以通过以下指令来实现一键转换。   
+
+```
+# 创建一个保存转换后 Huggingface 格式的文件夹
+mkdir -p /root/ft/huggingface
+
+# 模型转换
+# xtuner convert pth_to_hf ${配置文件地址} ${权重文件地址} ${转换后模型保存地址}
+xtuner convert pth_to_hf /root/ft/train/internlm2_1_8b_qlora_alpaca_e3_copy.py /root/ft/train/iter_768.pth /root/ft/huggingface
+```
+
+转换完成后，可以看到模型被转换为 Huggingface 中常用的 .bin 格式文件，这就代表着文件成功被转化为 Huggingface 格式了。   
+
+![](./XTuner25.png)
+![](./XTuner26.png)   
+
+**此时，huggingface 文件夹即为我们平时所理解的所谓 “LoRA 模型文件”**   
+
+`可以简单理解：LoRA 模型文件 = Adapter`   
+
+#### 2.5.2 模型整合    
+
+对于 LoRA 或者 QLoRA 微调出来的模型其实并不是一个完整的模型，而是一个额外的层（adapter）。   
+那么训练完的这个层最终还是要与原模型进行组合才能被正常的使用。   
+
+而对于全量微调的模型（full）其实是不需要进行整合这一步的，因为全量微调修改的是原模型的权重而非微调一个新的 adapter ，因此是不需要进行模型整合的。   
+
+ XTuner 提供了一键整合的指令，   
+ 但是在使用前我们需要准备好三个地址，包括原模型的地址、训练好的 adapter 层的地址（转为 Huggingface 格式后保存的部分）以及最终保存的地址。
+ 
+```
+# 创建一个名为 final_model 的文件夹存储整合后的模型文件
+mkdir -p /root/ft/final_model
+
+# 解决一下线程冲突的 Bug 
+export MKL_SERVICE_FORCE_INTEL=1
+
+# 进行模型整合
+# xtuner convert merge  ${NAME_OR_PATH_TO_LLM} ${NAME_OR_PATH_TO_ADAPTER} ${SAVE_PATH} 
+xtuner convert merge /root/ft/model /root/ft/huggingface /root/ft/final_model
+```
+
+整合完成后可以查看在 final_model 文件夹下的内容。
+
+![](./XTuner27.png) 
+![](./XTuner28.png) 
+
+#### 2.5.3 对话测试    
+
+XTuner 中也直接提供了一套基于 transformers 的对话代码   
+我们可以直接在终端与 Huggingface 格式的模型进行对话操作。我们只需要准备我们刚刚转换好的模型路径并选择对应的提示词模版（prompt-template）即可进行对话。   
+
+```
+# 与模型进行对话
+xtuner chat /root/ft/final_model --prompt-template internlm2_chat
+```
+通过一些简单的测试来看看微调后的模型的能力， 截图如下：   
+![](./XTuner29.png)    
+
+
+
+------
 ## 第6课 作业   
 
 记录复现过程并截图
@@ -286,6 +351,7 @@ xtuner train /root/ft/config/internlm2_1_8b_qlora_alpaca_e3_copy.py --work-dir /
 Dennis德林的作业详见上述笔记，结果截图如下：
 
 ![](./XTuner23.png)   
+![](./XTuner29.png) 
 
 ### 进阶作业
 
