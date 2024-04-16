@@ -179,9 +179,63 @@ cp -r /root/share/new_models/Shanghai_AI_Laboratory/internlm2-chat-1_8b/* /root/
 
 #### 2.2.3 配置文件选择
 
+在准备好了模型和数据集后，我们就要根据我们选择的微调方法方法结合前面的信息来找到与我们最匹配的配置文件了，从而减少我们对配置文件的修改量。   
 
+**配置文件（config）**，其实是一种用于定义和控制模型训练和测试过程中各个方面的参数和设置的工具。   
+准备好的配置文件只要运行起来就代表着模型就开始训练或者微调了。    
 
+XTuner 提供多个开箱即用的配置文件，用户可以通过下列命令查看：    
 
+`开箱即用意味着假如能够连接上 Huggingface 以及有足够的显存，其实就可以直接运行这些配置文件，XTuner就能够直接下载好这些模型和数据集然后开始进行微调`    
+
+```
+# 列出所有内置配置文件
+# xtuner list-cfg
+
+# 假如我们想找到 internlm2-1.8b 模型里支持的配置文件
+xtuner list-cfg -p internlm2_1_8b
+```
+用到了第一个 XTuner 的工具 list-cfg ，
+可以用来搜索特定模型的配置文件，比如例子中的 internlm2_1_8b ,也可以用来搜索像是微调方法 qlora 。 根据上面的定向搜索指令可以看到目前只有两个支持 internlm2-1.8B 的模型配置文件。如下图：
+
+![](./XTuner20.png)    
+
+配置文件名的解释    
+以 internlm2_1_8b_qlora_alpaca_e3 举例：
+|模型名|说明|
+|:-|:-|
+|internlm12_1_8b|模型名称|
+|qlora|使用的算法|
+|alpaca|数据集名称|
+|e3|把数据集跑3次|    
+
+虽然我们用的数据集并不是 `alpaca` 而是我们自己通过脚本制作的小助手数据集 ，但是由于我们是通过 `QLoRA` 的方式对 `internlm2-chat-1.8b` 进行微调。而最相近的配置文件应该就是 `internlm2_1_8b_qlora_alpaca_e3` ，因此我们可以选择拷贝这个配置文件到当前目录：
+```
+# 创建一个存放 config 文件的文件夹
+mkdir -p /root/ft/config
+
+# 使用 XTuner 中的 copy-cfg 功能将 config 文件复制到指定的位置
+xtuner copy-cfg internlm2_1_8b_qlora_alpaca_e3 /root/ft/config
+```
+这里我们就用到了 XTuner 工具箱中的第二个工具 `copy-cfg`
+该工具有两个必须要填写的参数 {CONFIG_NAME} 和 {SAVE_PATH} ，在我们的输入的这个指令中，我们的 {CONFIG_NAME} 对应的是上面搜索到的 internlm2_1_8b_qlora_alpaca_e3 ,而 {SAVE_PATH} 则对应的是刚刚新建的 /root/ft/config。   
+我们假如需要复制其他的配置文件只需要修改这两个参数即可实现。 输入后我们就能够看到在我们的 /root/ft/config 文件夹下有一个名为 internlm2_1_8b_qlora_alpaca_e3_copy.py 的文件了。如下图：
+
+![](./XTuner21.png)    
+
+#### 2.2.4 小结        
+
+完成以上内容后，我就已经完成了所有的准备工作:
+ 1. 在 GitHub 上克隆了 XTuner 的源码，并把相关的配套库也通过 pip 的方式进行了安装。
+ 2. 然后我们根据自己想要做的事情，利用脚本准备好了一份关于调教模型认识自己身份弟位的数据集。
+ 3. 再然后我们根据自己的显存及任务情况确定了使用 InternLM2-chat-1.8B 这个模型，并且将其复制到我们的文件夹里。
+ 4. 最后我们在 XTuner 已有的配置文件中，根据微调方法、数据集和模型挑选出最合适的配置文件并复制到我们新建的文件夹中。
+
+经过了以上的步骤后，我们的 `ft `文件夹 如下：    
+
+![](./XTuner22.png)        
+
+微调也经常被戏称为是炼丹!
 
 ## 第6课 作业   
 
