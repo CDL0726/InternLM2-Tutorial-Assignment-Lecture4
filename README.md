@@ -152,11 +152,35 @@ cd /root/ft/data
 # 运行代码
 python /root/ft/data/generate_data.py
 ```
+可以看到在data的路径下便生成了一个名为 personal_assistant.json 的文件，这样我们最可用于微调的数据集就准备好啦！
+里面就包含了 5000 条 input 和 output 的数据对。假如 我们认为 5000 条不够的话也可以调整文件中第6行 n 的值哦！
+
+![](./XTuner19.png) 
 
 ##### 2.2.2 模型准备   
 
 准备好了数据集后，接下来我们就需要准备好我们的要用于微调的模型。
 小模型 `InterLM2-Chat-1.8B` 来完成此次的微调.
+
+在 InternStudio 上运行，直接通过以下代码一键创建文件夹并将所有文件复制进去。
+（不用通过 OpenXLab 或者 Modelscope 进行模型的下载）
+```
+# 创建目标文件夹，确保它存在。
+# -p选项意味着如果上级目录不存在也会一并创建，且如果目标文件夹已存在则不会报错。
+mkdir -p /root/ft/model
+
+# 复制内容到目标文件夹。-r选项表示递归复制整个文件夹。
+cp -r /root/share/new_models/Shanghai_AI_Laboratory/internlm2-chat-1_8b/* /root/ft/model/
+```
+
+可以看到在 model 文件夹下保存了模型的相关文件和内容了。
+
+![](./XTuner18.png)   
+
+#### 2.2.3 配置文件选择
+
+
+
 
 
 ## 第6课 作业   
