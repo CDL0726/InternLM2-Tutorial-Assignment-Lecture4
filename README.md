@@ -237,5 +237,63 @@ xtuner copy-cfg internlm2_1_8b_qlora_alpaca_e3 /root/ft/config
 
 微调也经常被戏称为是炼丹!
 
+### 2.3 配置文件修改   
+
+在选择了一个最匹配的配置文件并准备好其他内容后，下面我们要做的事情就是根据我们自己的内容对该配置文件进行调整，使其能够满足我们实际训练的要求。    
+
+通过折叠部分的修改，内容如下，可以直接将以下代码复制到 `/root/ft/config/internlm2_1_8b_qlora_alpaca_e3_copy.py` 文件中（先 `Ctrl + A` 选中所有文件并删除后再将代码复制进去）。    
+
+完成了这部分的修改后，我们就可以正式的开始我们下一阶段的旅程： XTuner 启动~！   
+
+### 2.4 模型训练    
+
+#### 2.4.1 常规训练    
+当我们准备好了配置文件好，我们只需要将使用 xtuner train 指令即可开始训练。    
+
+我们可以通过添加 --work-dir 指定特定的文件保存位置，比如说就保存在 /root/ft/train 路径下。    
+假如不添加的话模型训练的过程文件将默认保存在 `./work_dirs/internlm2_1_8b_qlora_alpaca_e3_copy` 的位置，就比如说我是在 `/root/ft/train` 的路径下输入该指令，那么我的文件保存的位置就是在 `/root/ft/train/work_dirs/internlm2_1_8b_qlora_alpaca_e3_copy` 的位置下。   
+
+```
+# 指定保存路径
+xtuner train /root/ft/config/internlm2_1_8b_qlora_alpaca_e3_copy.py --work-dir /root/ft/train
+```
+
+#### 2.4.2 使用 deepspeed 来加速训练    
+
+除此之外，我们也可以结合 XTuner 内置的 deepspeed 来加速整体的训练过程，共有三种不同的 deepspeed 类型可进行选择，分别是 `deepspeed_zero1`, `deepspeed_zero2` 和 `deepspeed_zero3`。   
+
+#### 2.4.3 训练结果    
+
+其实无论是用哪种方式进行训练，得到的结果都是大差不差的。我们由于设置了300轮评估一次，所以我们可以对比一下300轮和600轮的评估问题结果来看看差别。    
+
+```
+# 300轮
+
+![](./XTuner23.png)
+
+# 600轮
+
+![](./XTuner24.png)
+```
+
 ## 第6课 作业   
+
+记录复现过程并截图
+
+### 基础作业（结营必做）
+
+- 训练自己的小助手认知（记录复现过程并截图）
+
+Dennis德林的作业详见上述笔记，结果截图如下：
+
+![](./XTuner23.png)   
+
+### 进阶作业
+
+- 将自我认知的模型上传到 OpenXLab，并将应用部署到 OpenXLab（优秀学员必做）
+- 复现多模态微调（优秀学员必做）
+
+
+
+
 
