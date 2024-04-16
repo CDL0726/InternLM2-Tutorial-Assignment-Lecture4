@@ -84,5 +84,80 @@
 ![](./XTuner15.png)
 
 
+## XTuner 微调个人小助手认知
+
+如何利用 XTuner 完成个人小助手的微调！
+
+### 1 开发机准备
+
+使用 `Cuda11.7-conda` 镜像，然后在资源配置中，使用 `10% A100 * 1` 的选项，创建开发机器。   
+
+### 2 快速上手    
+
+#### 2.1 环境安装    
+
+- 安装一个 XTuner：`studio-conda xtuner0.1.17`
+- 激活环境: `conda activate xtuner0.1.17`
+- 进入家目录: `cd ~`
+- 创建版本文件夹并进入: `mkdir -p /root/xtuner0117 && cd /root/xtuner0117`
+- 拉取 0.1.17 的版本源码:  `git clone -b v0.1.17  https://github.com/InternLM/xtuner`
+- 进入源码目录: ` cd /root/xtuner0117/xtuner`
+- 从源码安装 XTuner: `pip install -e '.[all]'`
+  
+![](./XTuner16.png)    
+![](./XTuner17.png)  
+
+#### 2.2 前期准备    
+
+##### 2.2.1 数据集准备
+
+首先我们先创建一个文件夹来存放我们这次训练所需要的所有文件。    
+```
+# 前半部分是创建一个文件夹，后半部分是进入该文件夹。
+mkdir -p /root/ft && cd /root/ft
+
+# 在ft这个文件夹里再创建一个存放数据的data文件夹
+mkdir -p /root/ft/data && cd /root/ft/data
+```
+
+在 data 目录下新建一个 generate_data.py 文件，将以下代码复制进去，然后运行该脚本即可生成数据集。
+假如想要加大剂量让他能够完完全全认识到你的身份，那我们可以吧 `n` 的值调大一点。
+```
+# 创建 `generate_data.py` 文件
+touch /root/ft/data/generate_data.py
+```
+
+打开该 python 文件后将下面的内容复制进去: 
+```
+import json
+
+# 设置用户的名字
+name = '不要姜葱蒜大佬'
+# 设置需要重复添加的数据次数
+n =  10000
+.....
+```
+将文件 name 后面的内容修改为你的名称。
+```
+# 将对应的name进行修改（在第4行的位置）
+- name = '不要姜葱蒜大佬'
++ name = "德林大佬"
+```
+
+修改完成后运行 generate_data.py 文件即可。    
+```
+# 确保先进入该文件夹
+cd /root/ft/data
+
+# 运行代码
+python /root/ft/data/generate_data.py
+```
+
+##### 2.2.2 模型准备   
+
+准备好了数据集后，接下来我们就需要准备好我们的要用于微调的模型。
+小模型 `InterLM2-Chat-1.8B` 来完成此次的微调.
+
+
 ## 第6课 作业   
 
