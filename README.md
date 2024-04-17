@@ -497,6 +497,22 @@ python /root/tutorial/xtuner/llava/llava_data/repeat.py \
   -n 200
 ```
 
+准备配置文件 `cp /root/tutorial/xtuner/llava/llava_data/internlm2_chat_1_8b_llava_tutorial_fool_config.py /root/tutorial/xtuner/llava/llava_internlm2_chat_1_8b_qlora_clip_vit_large_p14_336_lora_e1_gpu8_finetune_copy.py`   
+
+创建配置文件    
+```
+# 查询xtuner内置配置文件
+xtuner list-cfg -p llava_internlm2_chat_1_8b
+
+# 拷贝配置文件到当前目录
+xtuner copy-cfg \
+  llava_internlm2_chat_1_8b_qlora_clip_vit_large_p14_336_lora_e1_gpu8_finetune \
+  /root/tutorial/xtuner/llava
+```
+
+修改配置文件  
+
+修改`llava_internlm2_chat_1_8b_qlora_clip_vit_large_p14_336_lora_e1_gpu8_finetune_copy.py`文件中的：
 
 5. 对比Finetune前后的性能差异
    
