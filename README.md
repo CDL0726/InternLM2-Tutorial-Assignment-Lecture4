@@ -560,10 +560,6 @@ xtuner chat /root/share/new_models/Shanghai_AI_Laboratory/internlm2-chat-1_8b \
   --image /root/tutorial/xtuner/llava/llava_data/test_img/oph.jpg
 ```
 
-
-Finetune前
-```
-
 Finetune前后效果对比：
 
 Finetune前：只会打标题
