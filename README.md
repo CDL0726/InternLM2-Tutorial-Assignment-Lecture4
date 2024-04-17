@@ -356,7 +356,7 @@ Dennis德林的作业详见上述笔记，结果截图如下：
 ### 进阶作业
 
 - 将自我认知的模型上传到 OpenXLab，并将应用部署到 OpenXLab（优秀学员必做）
-- 
+  
 #### 1 OpenXLab·浦源平台介绍
 [OpenXLab](https://openxlab.org.cn/openplatform?lang=zh-CN) 浦源平台以开源为核心，旨在构建开源开放的人工智能生态，促进学术成果的开放共享。OpenXLab面向 AI 研究员和开发者提供 AI 领域的一站式服务平台，包含数据集中心、模型中心和应用中心，致力于推动人工智能对产学研各领域全面赋能，为构建人工智能开放生态，推动人工智能科研与技术突破、交叉创新和产业落地提供全方位的平台支撑。     
 
@@ -435,7 +435,7 @@ git lfs track "*.model"
 
 标记LFS管理的文件后，提交更新的信息，执行 git push 上传模型，命令如下所示：   
 ```
-cd internlm2-chat-7b
+cd internlm2-chat-1.8b
 git add -A
 git commit -m "upload model"
 git push
@@ -445,8 +445,35 @@ git push
 
 ![](./XTuner35.png)
 
+2.3 编写代码   
 
+编写 chat 的 web-ui 代码，主要包括项目结构初始化、应用环境配置和 gradio 应用代码的编写    
 
+![](./XTuner36.png)
+
+  2.3.1 初始化项目结构   
+  2.3.2 应用环境配置   
+  2.3.3 编写 gradio 应用代码    
+  2.3.4 推送代码至 GitHub    
+  编写完应用代码，记得推动您的应用代码至 GitHub 仓库中，推送本地代码至 GitHub 的命令如下：    
+  ```
+cd internlm2-chat-7b-git
+git add -A
+git commit -m "add app.py requirements.txt packages.txt"
+git push
+```
+
+2.4 部署应用    
+
+在OpenXLab浦源平台中，部署写好的 chat web-ui 的应用，具体步骤如下。    
+
+![](./XTuner37.png)  
+
+  2.4.1 创建入口    
+  2.4.2 应用配置    
+  2.4.3 应用构建和启动    
+  2.4.4 应用公开    
+  
 
 - 复现多模态微调（优秀学员必做）
 
