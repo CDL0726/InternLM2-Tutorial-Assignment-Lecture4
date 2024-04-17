@@ -356,6 +356,98 @@ Dennis德林的作业详见上述笔记，结果截图如下：
 ### 进阶作业
 
 - 将自我认知的模型上传到 OpenXLab，并将应用部署到 OpenXLab（优秀学员必做）
+- 
+#### 1 OpenXLab·浦源平台介绍
+[OpenXLab](https://openxlab.org.cn/openplatform?lang=zh-CN) 浦源平台以开源为核心，旨在构建开源开放的人工智能生态，促进学术成果的开放共享。OpenXLab面向 AI 研究员和开发者提供 AI 领域的一站式服务平台，包含数据集中心、模型中心和应用中心，致力于推动人工智能对产学研各领域全面赋能，为构建人工智能开放生态，推动人工智能科研与技术突破、交叉创新和产业落地提供全方位的平台支撑。     
+
+![](./XTuner30.png)    
+
+#### 2. 部署 InternLM2-Chat-1.8B 
+
+在 OpenXLab 上部署一个 InternLM2-Chat-1.8B 的应用，具体步骤如下：   
+  1. 模型准备
+  2. 上传模型
+  3. 编写代码
+  4. 部署应用
+
+![](./XTuner31.png)    
+
+2.1 模型准备    
+
+用大基础作灶中 预训练好的InternLM2-Chat-1.8BB 模型，模型已准备好。   
+
+2.2 上传模型   
+
+上传模型至 OpenXLab 模型中心的步骤如下:   
+
+![](./XTuner32.png)    
+
+2.2.1 初始化 Git 配置   
+
+Windows:
+
+  1. 访问Git官方网站下载页面：[Git - Downloads](https://git-scm.com/downloads)
+  2. 点击“Windows”下载Git安装程序。
+  3. 运行下载的安装程序并按照向导指示完成安装。
+
+配置 Git Username，用于作为 Git 提交的身份标识。  
+```
+git config --global user.name "cdl0726"
+```
+  *需要将 Username 替换成你在 OpenXLab 平台上的用户名*
+
+配置 Git Email   
+```
+git config --global user.email "cdl0726@outlook.com"
+```
+
+2.2.2 拉取模型仓库   
+
+首先需要在 OpenXLab 先创建一个空仓库，填写模型仓库的基本信息，包括仓库名称、任务类型、访问权限等。   
+创建完成空的模型仓库后，找到该仓库的 git 地址并拉取该空仓库至本地，空仓库的地址在模型文件的下载按钮.   
+
+找到空仓库下的 git 地址，执行 git clone 操作   
+```
+git clone https://code.openxlab.org.cn/cdl0726/InternLM2-Chat-1.8B.git
+```
+
+![](./XTuner33.png)
+
+2.2.3 获取 Git Access Token   
+在 OpenXLab 的密钥管理添加 Git 令牌   
+进入密钥管理页面，点击添加令牌，输入一个令牌名称和选择可写的权限，如下图所示 
+
+![](./XTuner34.1.png)
+
+添加完令牌后，记得复制生成的 Access Token，如下图所示，在后续上传模型文件，执行git push 命令时会需要填入 Username 和 Access Token 信息  
+
+![](./XTuner34.png)
+
+2.2.4 上传模型文件   
+
+在克隆的仓库目录中整理模型文件，即将你的模型文件放入至clone的目录中，并执行git push命令将模型推送至远程仓库   
+
+LFS管理大文件：使用 git lfs track 命令来标记你希望通过 Git LFS 管理的大文件。例如，您想要通过LFS管理所有的 .bin和 .model的模型文件，可以使用以下命令：   
+```
+git lfs track "*.bin"
+git lfs track "*.model"
+```
+
+标记LFS管理的文件后，提交更新的信息，执行 git push 上传模型，命令如下所示：   
+```
+cd internlm2-chat-7b
+git add -A
+git commit -m "upload model"
+git push
+```
+
+在执行 git push 时会弹出身份验证的弹窗，填入 Username 和 Access Token 信息，如图所示   
+
+![](./XTuner35.png)
+
+
+
+
 - 复现多模态微调（优秀学员必做）
 
 
