@@ -476,8 +476,76 @@ git push
   
 
 - 复现多模态微调（优秀学员必做）
+- 
+自己构造 <question text><image>--<answer text> 数据对，基于InternLM2_Chat_1.8B这个文本单模态模型，使用LLaVA方案，训练一个给InternLM2_Chat_1.8B使用的Image Projector文件。
+
+1. 开发机准备 使用 `Cuda11.7-conda` 镜像, `30% A100 * 1`。
+2. XTuner 安装 
+3. Pretrain阶段
+   提供了Pretrain阶段的产物——`iter_2181.pth`文件。它就是幼稚园阶段的Image Projector！
+   带着`iter_2181.pth`文件继续进入下一阶段进行Finetune即可。
+   
+4. Finetune 阶段
+  方便大家跟随课程，针对这张示例图片的问答对数据（repeat_data.json），大家按照下面的脚本运行就可以生成啦~（重复200次）
+
+ ```
+cd ~ && git clone https://github.com/InternLM/tutorial -b camp2 && conda activate xtuner0.1.17 && cd tutorial
+
+python /root/tutorial/xtuner/llava/llava_data/repeat.py \
+  -i /root/tutorial/xtuner/llava/llava_data/unique_data.json \
+  -o /root/tutorial/xtuner/llava/llava_data/repeated_data.json \
+  -n 200
+```
 
 
+5. 对比Finetune前后的性能差异
+   
+# 解决小bug
+export MKL_SERVICE_FORCE_INTEL=1
+export MKL_THREADING_LAYER=GNU
+
+# pth转huggingface
+xtuner convert pth_to_hf \
+  llava_internlm2_chat_1_8b_clip_vit_large_p14_336_e1_gpu8_pretrain \
+  /root/share/new_models/xtuner/iter_2181.pth \
+  /root/tutorial/xtuner/llava/llava_data/iter_2181_hf
+
+# 启动！
+xtuner chat /root/share/new_models/Shanghai_AI_Laboratory/internlm2-chat-1_8b \
+  --visual-encoder /root/share/new_models/openai/clip-vit-large-patch14-336 \
+  --llava /root/tutorial/xtuner/llava/llava_data/iter_2181_hf \
+  --prompt-template internlm2_chat \
+  --image /root/tutorial/xtuner/llava/llava_data/test_img/oph.jpg
+  ```
+
+Finetune后
+```
+# 解决小bug
+export MKL_SERVICE_FORCE_INTEL=1
+export MKL_THREADING_LAYER=GNU
+
+# pth转huggingface
+xtuner convert pth_to_hf \
+  /root/tutorial/xtuner/llava/llava_internlm2_chat_1_8b_qlora_clip_vit_large_p14_336_lora_e1_gpu8_finetune_copy.py \
+  /root/tutorial/xtuner/llava/work_dirs/llava_internlm2_chat_1_8b_qlora_clip_vit_large_p14_336_lora_e1_gpu8_finetune_copy/iter_1200.pth \
+  /root/tutorial/xtuner/llava/llava_data/iter_1200_hf
+
+# 启动！
+xtuner chat /root/share/new_models/Shanghai_AI_Laboratory/internlm2-chat-1_8b \
+  --visual-encoder /root/share/new_models/openai/clip-vit-large-patch14-336 \
+  --llava /root/tutorial/xtuner/llava/llava_data/iter_1200_hf \
+  --prompt-template internlm2_chat \
+  --image /root/tutorial/xtuner/llava/llava_data/test_img/oph.jpg
+  ```
 
 
+Finetune前
+```
 
+Finetune前后效果对比：
+
+Finetune前：只会打标题
+![](./XTuner38.png)  
+
+Finetune后：会回答问题了
+![](./XTuner39.png) 
