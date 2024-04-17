@@ -497,7 +497,9 @@ python /root/tutorial/xtuner/llava/llava_data/repeat.py \
   -n 200
 ```
 
-准备配置文件 `cp /root/tutorial/xtuner/llava/llava_data/internlm2_chat_1_8b_llava_tutorial_fool_config.py /root/tutorial/xtuner/llava/llava_internlm2_chat_1_8b_qlora_clip_vit_large_p14_336_lora_e1_gpu8_finetune_copy.py`   
+准备配置文件 
+```cp /root/tutorial/xtuner/llava/llava_data/internlm2_chat_1_8b_llava_tutorial_fool_config.py /root/tutorial/xtuner/llava/llava_internlm2_chat_1_8b_qlora_clip_vit_large_p14_336_lora_e1_gpu8_finetune_copy.py
+```   
 
 创建配置文件    
 ```
@@ -516,6 +518,9 @@ xtuner copy-cfg \
 
 5. 对比Finetune前后的性能差异
    
+Finetune前
+
+```
 # 解决小bug
 export MKL_SERVICE_FORCE_INTEL=1
 export MKL_THREADING_LAYER=GNU
@@ -532,9 +537,10 @@ xtuner chat /root/share/new_models/Shanghai_AI_Laboratory/internlm2-chat-1_8b \
   --llava /root/tutorial/xtuner/llava/llava_data/iter_2181_hf \
   --prompt-template internlm2_chat \
   --image /root/tutorial/xtuner/llava/llava_data/test_img/oph.jpg
-  ```
+```
 
 Finetune后
+
 ```
 # 解决小bug
 export MKL_SERVICE_FORCE_INTEL=1
@@ -552,7 +558,7 @@ xtuner chat /root/share/new_models/Shanghai_AI_Laboratory/internlm2-chat-1_8b \
   --llava /root/tutorial/xtuner/llava/llava_data/iter_1200_hf \
   --prompt-template internlm2_chat \
   --image /root/tutorial/xtuner/llava/llava_data/test_img/oph.jpg
-  ```
+```
 
 
 Finetune前
