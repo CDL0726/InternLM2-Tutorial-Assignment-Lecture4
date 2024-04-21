@@ -1,17 +1,17 @@
-# InternLM2-Tutorial-Assignment-Lecture5  
+# InternLM2-Tutorial-Assignment-Lecture4  
 # 第5课 XTuner 微调 LLM：1.8B、多模态和 Agent   
 2024.4.11  XTuner 贡献者 李剑锋 汪周谦 王群    
 
 [XTuner]( https://github.com/InternLM/XTuner)   
-[第6课 视频]( https://b23.tv/QUhT6ni)   
-[第6课 文档](https://github.com/InternLM/Tutorial/blob/camp2/xtuner/personal_assistant_document.md)   
-[第6课 文档](https://github.com/InternLM/Tutorial/blob/camp2/xtuner/readme.md)   
-[第6课 作业](https://github.com/InternLM/Tutorial/blob/camp2/xtuner/homework.md)    
+[第4课 视频]( https://b23.tv/QUhT6ni)   
+[第4课 文档](https://github.com/InternLM/Tutorial/blob/camp2/xtuner/personal_assistant_document.md)   
+[第4课 文档](https://github.com/InternLM/Tutorial/blob/camp2/xtuner/readme.md)   
+[第4课 作业](https://github.com/InternLM/Tutorial/blob/camp2/xtuner/homework.md)    
 [OpenXLab 部署教程](https://github.com/InternLM/Tutorial/tree/camp2/tools/openxlab-deploy)    
 
-## 第6课 笔记   
+# 第4课 笔记   
 
-### 1. 原理
+## 1. 原理
 - 为什么要微调调大模型： 现有的模型是基座模型 Foundation Model
 
 - Finetune二种范式：增量预训练微调 和 指令跟随微调
@@ -35,7 +35,7 @@
 ![](./XTuner5.png)
 ![](./XTuner6.png)
 
-### 2. XTuner   
+## 2. XTuner   
 
 - XTuner是以配置文件的形式专封装了大部分微调场景，对于0基础的非专业人员也能微调模型；轻量化，对于7B参数量的LLM，最小显存为8GB，消费级显卡就可以微调模型。
 
@@ -62,19 +62,19 @@
 ![](./XTuner12.png)
 ![](./XTuner13.png)
 
-### 3. 8GB显存玩转LLM
+## 3. 8GB显存玩转LLM
 
 - XTuner二种加速优化方案：Flash Attention 和 DeepSpeed ZeRO
 - 优化后，可以明显减少显存的占用。
 
-### 4. InternLM2 1.8B 模型
+## 4. InternLM2 1.8B 模型
 
 - 三个版本开源模型：
     - InternLM2-1.8B : 基础模型，为下游深度适应提供了良好的起点；
     - InternLM2-chat-1.8B-SFT : 在InternLM2-1.8B 上进行监督微调（SFT）后得到的对话模型；
     - **InternLM2-Chat-1.8B** :   通过在线RLHF 在InternLM2-chat-1.8B-SFT 之上进一步对齐，表现出更好的指令跟随、聊天体验和函数调用，模型大小为3.78G,
 
-### 5. 多模态LLM     
+## 5. 多模态LLM     
 
 - 给LLM装上电子眼，多模态是识图，不是生图，
 - LLaVA方案 Image Projector
@@ -84,17 +84,17 @@
 ![](./XTuner15.png)
 
 
-## XTuner 微调个人小助手认知
+# XTuner 微调个人小助手认知
 
 如何利用 XTuner 完成个人小助手的微调！
 
-### 1 开发机准备
+## 1 开发机准备
 
 使用 `Cuda11.7-conda` 镜像，然后在资源配置中，使用 `10% A100 * 1` 的选项，创建开发机器。   
 
-### 2 快速上手    
+## 2 快速上手    
 
-#### 2.1 环境安装    
+### 2.1 环境安装    
 
 - 安装一个 XTuner：`studio-conda xtuner0.1.17`
 - 激活环境: `conda activate xtuner0.1.17`
@@ -107,9 +107,9 @@
 ![](./XTuner16.png)    
 ![](./XTuner17.png)  
 
-#### 2.2 前期准备    
+### 2.2 前期准备    
 
-##### 2.2.1 数据集准备
+#### 2.2.1 数据集准备
 
 首先我们先创建一个文件夹来存放我们这次训练所需要的所有文件。    
 ```
@@ -157,7 +157,7 @@ python /root/ft/data/generate_data.py
 
 ![](./XTuner19.png) 
 
-##### 2.2.2 模型准备   
+#### 2.2.2 模型准备   
 
 准备好了数据集后，接下来我们就需要准备好我们的要用于微调的模型。
 小模型 `InterLM2-Chat-1.8B` 来完成此次的微调.
@@ -340,11 +340,11 @@ xtuner chat /root/ft/final_model --prompt-template internlm2_chat
 
 
 ------
-## 第6课 作业   
+# 第6课 作业   
 
 记录复现过程并截图
 
-### 基础作业（结营必做）
+## 基础作业（结营必做）
 
 - 训练自己的小助手认知（记录复现过程并截图）
 
@@ -353,16 +353,16 @@ Dennis德林的作业详见上述笔记，结果截图如下：
 ![](./XTuner23.png)   
 ![](./XTuner29.png) 
 
-### 进阶作业
+## 进阶作业
 
 - 将自我认知的模型上传到 OpenXLab，并将应用部署到 OpenXLab（优秀学员必做）
   
-#### 1 OpenXLab·浦源平台介绍
+### 1 OpenXLab·浦源平台介绍
 [OpenXLab](https://openxlab.org.cn/openplatform?lang=zh-CN) 浦源平台以开源为核心，旨在构建开源开放的人工智能生态，促进学术成果的开放共享。OpenXLab面向 AI 研究员和开发者提供 AI 领域的一站式服务平台，包含数据集中心、模型中心和应用中心，致力于推动人工智能对产学研各领域全面赋能，为构建人工智能开放生态，推动人工智能科研与技术突破、交叉创新和产业落地提供全方位的平台支撑。     
 
 ![](./XTuner30.png)    
 
-#### 2. 部署 InternLM2-Chat-1.8B 
+### 2. 部署 InternLM2-Chat-1.8B 
 
 在 OpenXLab 上部署一个 InternLM2-Chat-1.8B 的应用，具体步骤如下：   
   1. 模型准备
