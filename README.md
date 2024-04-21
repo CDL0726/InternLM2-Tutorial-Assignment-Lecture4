@@ -340,7 +340,7 @@ xtuner chat /root/ft/final_model --prompt-template internlm2_chat
 
 
 ------
-# 第6课 作业   
+# 第4课 作业   
 
 记录复现过程并截图
 
@@ -348,7 +348,8 @@ xtuner chat /root/ft/final_model --prompt-template internlm2_chat
 
 - 训练自己的小助手认知（记录复现过程并截图）
 
-Dennis德林的作业详见上述笔记，结果截图如下：
+> !Tips
+> Dennis德林的作业详见上述笔记：**XTuner 微调个人小助手认知**，结果截图如下：
 
 ![](./XTuner23.png)   
 ![](./XTuner29.png) 
