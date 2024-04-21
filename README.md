@@ -1,5 +1,5 @@
 # InternLM2-Tutorial-Assignment-Lecture4  
-# 第5课 XTuner 微调 LLM：1.8B、多模态和 Agent   
+# 第4课 XTuner 微调 LLM：1.8B、多模态和 Agent   
 2024.4.11  XTuner 贡献者 李剑锋 汪周谦 王群    
 
 [XTuner]( https://github.com/InternLM/XTuner)   
