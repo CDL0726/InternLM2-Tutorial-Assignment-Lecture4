@@ -24,7 +24,15 @@
   - 添加Label
 
 ![](./XTuner1.png)   
-![](./XTuner2.png)
+![](./XTuner2.png)    
+
+- 一条数据的一生：
+  - 原始数据
+  - 标准格式数据 system user assistant
+  - 添加对话模板  system input output 对话模版是为了能够让LLM区分出system user和assistant，不同的模型会有不同的模版。
+  - Tokenized数据
+  - 添加Label
+
 ![](./XTuner3.png)
 ![](./XTuner4.png)   
 
