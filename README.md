@@ -474,9 +474,9 @@ git push
   2.4.3 应用构建和启动    
   2.4.4 应用公开    
   
-
-- 复现多模态微调（优秀学员必做）
-- 
+---
+- **复现多模态微调（优秀学员必做）**
+  
 自己构造 <question text><image>--<answer text> 数据对，基于InternLM2_Chat_1.8B这个文本单模态模型，使用LLaVA方案，训练一个给InternLM2_Chat_1.8B使用的Image Projector文件。
 
 1. 开发机准备 使用 `Cuda11.7-conda` 镜像, `30% A100 * 1`。
