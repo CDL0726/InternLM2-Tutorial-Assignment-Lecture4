@@ -427,7 +427,7 @@ git config --global user.email "cdl0726@outlook.com"
 找到空仓库下的 git 地址，执行 git clone 操作  
 
 ```
-git clone https://code.openxlab.org.cn/cdl0726/Dennis-Personal-Assistant.git
+git clone https://code.openxlab.org.cn/cdl0726/internlm2-chat-7b-assistant.git
 ```
 
 ![](./XTuner40.3.png)
@@ -446,6 +446,36 @@ git clone https://code.openxlab.org.cn/cdl0726/Dennis-Personal-Assistant.git
 
 在克隆的仓库目录中整理模型文件，即将你的模型文件放入至clone的目录中，并执行git push命令将模型推送至远程仓库   
 
+本地 clone 的文档目录结构如下所示：    
+
+```
+├─internlm2-chat-7b-assistant
+│  ├─.gitattributes                 
+│  ├─README.md       
+│  ├─config.json           
+|  ├─configuration_internlm.py  
+|  ├─generation_config.json 
+|  ├─modeling_internlm2.py 
+|  ├─pytorch_model-00001-of-00008.bin 
+|  ├─pytorch_model-00002-of-00008.bin 
+|  ├─pytorch_model-00003-of-00008.bin 
+|  ├─pytorch_model-00004-of-00008.bin
+|  ├─pytorch_model-00005-of-00008.bin
+|  ├─pytorch_model-00006-of-00008.bin
+|  ├─pytorch_model-00007-of-00008.bin 
+|  ├─pytorch_model-00008-of-00008.bin 
+|  ├─pytorch_model.bin.index.json
+|  ├─special_tokens_map.json
+|  ├─tokenization_internlm.py 
+|  ├─tokenizer.model 
+│  └─tokenizer_config.json
+```
+
+本地电脑已下载的模型：        
+
+![](./XTuner40.5.png) 
+
+
 **LFS管理大文件：** 使用 git lfs track 命令来标记你希望通过 Git LFS 管理的大文件。例如，您想要通过LFS管理所有的 .bin和 .model的模型文件，可以使用以下命令：   
 ```
 git lfs track "*.bin"
@@ -457,11 +487,27 @@ git lfs track "*.safetensors"
 
 标记LFS管理的文件后，提交更新的信息，执行 git push 上传模型，命令如下所示：   
 ```
-cd internlm2-chat-1.8b
+cd inetnlm2-chat-7b-assistant
 git add -A
 git commit -m "upload model"
 git push
 ```
+
+!命令行解释
+  1.`cd internlm2-chat-7b-assistan`t：切换到名为`internlm2-chat-7b-assistant`的目录。
+  2.`git add -A`：添加所有新文件、修改过的文件和删除的文件到暂存区。
+  3.`git commit -m "upload model"`：创建一个新的提交，附带提交信息"upload model"。
+  4.`git push`：将本地的提交推送到远程仓库。   
+  
+运行结果如下：    
+
+![](./XTuner40.6.png)   
+
+运行 `git push`时， 出现下列错误：     
+
+![](./XTuner40.6.1.png) 
+![](./XTuner40.6.2.png)
+
 
 在执行 git push 时会弹出身份验证的弹窗，填入 Username 和 Access Token 信息，如图所示   
 
