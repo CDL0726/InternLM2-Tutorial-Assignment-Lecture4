@@ -417,11 +417,12 @@ git config --global user.email "cdl0726@outlook.com"
 
 2.2.2 拉取模型仓库    
 
-![](./XTuner33.png)   
+首先需要在 **OpenXLab 先创建一个空仓库**，填写模型仓库的基本信息，包括仓库名称、任务类型、访问权限等。      
 
-首先需要在** OpenXLab 先创建一个空仓库**，填写模型仓库的基本信息，包括仓库名称、任务类型、访问权限等。   
+![](./XTuner40.1.png)    
+
 创建完成空的模型仓库后，找到该仓库的 git 地址并拉取该空仓库至本地，空仓库的地址在模型文件的下载按钮.   
-![](./XTuner40.1.png)
+![](./XTuner40.2.png)
 
 找到空仓库下的 git 地址，执行 git clone 操作  
 
@@ -429,7 +430,7 @@ git config --global user.email "cdl0726@outlook.com"
 git clone https://code.openxlab.org.cn/cdl0726/Dennis-Personal-Assistant.git
 ```
 
-![](./XTuner40.2.png)
+![](./XTuner40.3.png)
 
 2.2.3 获取 Git Access Token   
 在 OpenXLab 的密钥管理添加 Git 令牌   
@@ -452,7 +453,7 @@ git lfs track "*.model"
 git lfs track "*.safetensors"
 ```
 
-![](./XTuner40.3.png)    
+![](./XTuner40.4.png)    
 
 标记LFS管理的文件后，提交更新的信息，执行 git push 上传模型，命令如下所示：   
 ```
