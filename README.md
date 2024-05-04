@@ -509,9 +509,11 @@ git push
 ![](./XTuner40.6.2.png)
 
 
-在执行 git push 时会弹出身份验证的弹窗，填入 Username 和 Access Token 信息，如图所示   
+在执行 git push 时， 并*没有出现如图所示的弹出身份验证的弹窗*，填入 Username 和 Access Token 信息：  
 
-![](./XTuner35.png)
+![](./XTuner35.png)    
+
+
 
 2.3 编写代码   
 
