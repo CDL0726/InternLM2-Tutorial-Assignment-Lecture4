@@ -355,16 +355,16 @@ xtuner chat /root/ft/final_model --prompt-template internlm2_chat
 
 # 进阶作业
 
-## 模型上传到 OpenXLab  并将应用部署到 OpenXLab
+## 模型上传到 OpenXLab, 将应用部署到 OpenXLab
   
 ### 1 OpenXLab·浦源平台介绍
 [OpenXLab](https://openxlab.org.cn/openplatform?lang=zh-CN) 浦源平台以开源为核心，旨在构建开源开放的人工智能生态，促进学术成果的开放共享。OpenXLab面向 AI 研究员和开发者提供 AI 领域的一站式服务平台，包含数据集中心、模型中心和应用中心，致力于推动人工智能对产学研各领域全面赋能，为构建人工智能开放生态，推动人工智能科研与技术突破、交叉创新和产业落地提供全方位的平台支撑。     
 
 ![](./XTuner30.png)    
 
-### 2. 部署 InternLM2-Chat-1.8B 
+### 2. 模型上传到OpenXLab,  
 
-在 OpenXLab 上部署一个 InternLM2-Chat-1.8B 的应用，具体步骤如下：   
+在 OpenXLab 上部署一个 InternLM2-Chat-7B-assistant 的应用，具体步骤如下：   
   1. 模型准备
   2. 上传模型
   3. 编写代码
@@ -513,7 +513,7 @@ git push
 
 ![](./XTuner35.png)    
 
-**解决bug方案**  
+**问题解决方案**  
 在本地电脑的对应仓库文件夹`internlm2-chat-7b-assistant`里，用记事本打开 `.git` 隐藏文件，将原来的
 
 `url=https://code.openxlab.org.cn/cdl0726/internlm2-chat-7b-assistant.git`     
@@ -532,8 +532,8 @@ https://用户名:密钥@仓库地址
 ![](./XTuner35.4.png) 
 
 
-OpenXLab上传好后的模型如下： 
-**https://openxlab.org.cn/models/detail/cdl0726/internlm2-chat-7b-assistant/tree/main**    
+**上传成功， OpenXLab上模型地址**： 
+https://openxlab.org.cn/models/detail/cdl0726/internlm2-chat-7b-assistant/tree/main
 
 ![](./XTuner35.5.png) 
 
@@ -549,7 +549,7 @@ OpenXLab上传好后的模型如下：
   2.3.4 推送代码至 GitHub    
   编写完应用代码，记得推动您的应用代码至 GitHub 仓库中，推送本地代码至 GitHub 的命令如下：    
   ```
-cd internlm2-chat-7b-git
+cd internlm2-chat-7b-assistant
 git add -A
 git commit -m "add app.py requirements.txt packages.txt"
 git push
@@ -567,7 +567,7 @@ git push
   2.4.4 应用公开    
   
 ---
-- **复现多模态微调**
+## 复现多模态微调    
   
 自己构造 <question text><image>--<answer text> 数据对，基于InternLM2_Chat_1.8B这个文本单模态模型，使用LLaVA方案，训练一个给InternLM2_Chat_1.8B使用的Image Projector文件。
 
