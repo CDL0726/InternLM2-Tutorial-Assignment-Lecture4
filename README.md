@@ -543,10 +543,28 @@ https://openxlab.org.cn/models/detail/cdl0726/internlm2-chat-7b-assistant/tree/m
 
 ![](./XTuner36.png)
 
-  2.3.1 初始化项目结构   
-  2.3.2 应用环境配置   
-  2.3.3 编写 gradio 应用代码    
-  2.3.4 推送代码至 GitHub    
+2.3.1 初始化项目结构   
+
+创建一个新的 GitHub 仓库来存放您的 gradio 应用代码。例如创建一个 internlm2-chat-7b-git 的代码仓库，推荐的项目结构如下：    
+
+```
+├─GitHub_Repo_Name
+│  ├─app.py                 # Gradio 应用默认启动文件为app.py，应用代码相关的文件包含模型推理，应用的前端配置代码
+│  ├─requirements.txt       # 安装运行所需要的 Python 库依赖（pip 安装）
+│  ├─packages.txt           # 安装运行所需要的 Debian 依赖项（ apt-get 安装）
+|  ├─README.md              # 编写应用相关的介绍性的文档
+│  └─... 
+```
+
+! 代码仓库: https://github.com/CDL0726/internlm2-chat-7b-assistant
+
+2.3.2 应用环境配置  
+
+  
+2.3.3 编写 gradio 应用代码   
+
+  
+2.3.4 推送代码至 GitHub    
   编写完应用代码，记得推动您的应用代码至 GitHub 仓库中，推送本地代码至 GitHub 的命令如下：    
   ```
 cd internlm2-chat-7b-assistant
@@ -554,6 +572,7 @@ git add -A
 git commit -m "add app.py requirements.txt packages.txt"
 git push
 ```
+
 
 2.4 部署应用    
 
