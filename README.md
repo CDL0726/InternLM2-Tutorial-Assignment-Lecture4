@@ -513,6 +513,23 @@ git push
 
 ![](./XTuner35.png)    
 
+**解决bug方案**  
+在本地电脑的对应仓库文件夹`internlm2-chat-7b-assistant`里，用记事本打开 `.git` 隐藏文件，将原来的
+
+`url=https://code.openxlab.org.cn/cdl0726/internlm2-chat-7b-assistant.git`     
+
+![](./XTuner35.1.png)     
+
+修改成：
+
+https://用户名:密钥@仓库地址    
+
+![](./XTuner35.2.png) 
+
+然后在运行 `git push`, 之前的问题解决， 结果如下：    
+
+![](./XTuner35.3.png) 
+
 
 
 2.3 编写代码   
