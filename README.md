@@ -556,13 +556,62 @@ https://openxlab.org.cn/models/detail/cdl0726/internlm2-chat-7b-assistant/tree/m
 │  └─... 
 ```
 
-! 代码仓库: https://github.com/CDL0726/internlm2-chat-7b-assistant
+代码仓库: https://github.com/CDL0726/internlm2-chat-7b-assistant
+
 
 2.3.2 应用环境配置  
 
+依赖管理：配置应用所需的运行环境,如有 Python 依赖项（ pip 安装）可写入 requirements.txt 中，Debian 依赖项（ apt-get 安装）可写入 packages.txt 中，并存放至代码仓库的根目录下。    
+
+`requirement.txt` 配置 python相关的依赖包    
+
+```
+gradio==4.10.0
+transformers
+sentencepiece
+einops
+accelerate
+tiktoken
+```
+
+`packages.txt` 配置下载模型权重的工具包 git 和 git-lfs    
+
+```
+git
+git-lfs
+```
   
 2.3.3 编写 gradio 应用代码   
 
+编写一个app.py文件，里面可以通过transformers框架进行模型实例化并通过gradio组件搭建chat聊天界面,  
+
+`app.py`中编写代码       
+主要内容有模型下载、模型载入、启动gradio    
+```
+import gradio as gr
+import os
+import torch
+from transformers import AutoModelForCausalLM, AutoTokenizer, AutoModel
+
+# download internlm2 to the base_path directory using git tool
+base_path = './internlm2-chat-7b'
+os.system(f'git clone https://code.openxlab.org.cn/OpenLMLab/internlm2-chat-7b.git {base_path}')
+os.system(f'cd {base_path} && git lfs pull')
+
+tokenizer = AutoTokenizer.from_pretrained(base_path,trust_remote_code=True)
+model = AutoModelForCausalLM.from_pretrained(base_path,trust_remote_code=True, torch_dtype=torch.float16).cuda()
+
+def chat(message,history):
+    for response,history in model.stream_chat(tokenizer,message,history,max_length=2048,top_p=0.7,temperature=1):
+        yield response
+
+gr.ChatInterface(chat,
+                 title="InternLM2-Chat-7B",
+                description="""
+InternLM is mainly developed by Shanghai AI Laboratory.  
+                 """,
+                 ).queue(1).launch()
+```
   
 2.3.4 推送代码至 GitHub    
   编写完应用代码，记得推动您的应用代码至 GitHub 仓库中，推送本地代码至 GitHub 的命令如下：    
@@ -572,7 +621,6 @@ git add -A
 git commit -m "add app.py requirements.txt packages.txt"
 git push
 ```
-
 
 2.4 部署应用    
 
