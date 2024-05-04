@@ -532,7 +532,8 @@ https://用户名:密钥@仓库地址
 ![](./XTuner35.4.png) 
 
 
-OpenXLab上传好后的模型如下：    
+OpenXLab上传好后的模型如下： 
+**https://openxlab.org.cn/models/detail/cdl0726/internlm2-chat-7b-assistant/tree/main**    
 
 ![](./XTuner35.5.png) 
 
@@ -566,7 +567,7 @@ git push
   2.4.4 应用公开    
   
 ---
-- **复现多模态微调（优秀学员必做）**
+- **复现多模态微调**
   
 自己构造 <question text><image>--<answer text> 数据对，基于InternLM2_Chat_1.8B这个文本单模态模型，使用LLaVA方案，训练一个给InternLM2_Chat_1.8B使用的Image Projector文件。
 
