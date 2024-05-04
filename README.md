@@ -380,7 +380,7 @@ xtuner chat /root/ft/final_model --prompt-template internlm2_chat
 
 **Reference**    
 
-- [OpenXLab 平台介绍] (https://openxlab.org.cn/docs/intro.html)
+- [OpenXLab 平台介绍](https://openxlab.org.cn/docs/intro.html)
 - [OpenXLab Gradio 应用教程](https://openxlab.org.cn/docs/apps/Gradio%E5%BA%94%E7%94%A8.html)
 - [OpenXLab 上传模型教程](https://openxlab.org.cn/docs/models/%E4%B8%8A%E4%BC%A0%E6%A8%A1%E5%9E%8B.html)
 
