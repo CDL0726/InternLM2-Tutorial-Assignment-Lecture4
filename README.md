@@ -362,7 +362,7 @@ xtuner chat /root/ft/final_model --prompt-template internlm2_chat
 
 ![](./XTuner30.png)    
 
-### 2. 模型上传到OpenXLab,  
+### 2. 模型上传到OpenXLab并部署应用 
 
 在 OpenXLab 上部署一个 InternLM2-Chat-7B-assistant 的应用，具体步骤如下：   
   1. 模型准备
