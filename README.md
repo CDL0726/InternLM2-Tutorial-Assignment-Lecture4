@@ -1,5 +1,5 @@
 # InternLM2-Tutorial-Assignment-Lecture4  
-# 第4课 XTuner 微调 LLM：1.8B、多模态和 Agent   
+# 第4课 XTuner 微调 LLM：1.8B、多模态和 Agent     
 2024.4.11  XTuner 贡献者 李剑锋 汪周谦 王群    
 
 [XTuner]( https://github.com/InternLM/XTuner)   
@@ -343,9 +343,9 @@ xtuner chat /root/ft/final_model --prompt-template internlm2_chat
 
 记录复现过程并截图
 
-## 基础作业（结营必做）
+# 基础作业（结营必做）
 
-- 训练自己的小助手认知（记录复现过程并截图）
+## 训练自己的小助手认知（记录复现过程并截图）
 
 > !Tips
 > Dennis德林的作业详见上述笔记：**XTuner 微调个人小助手认知**，结果截图如下：
@@ -353,9 +353,9 @@ xtuner chat /root/ft/final_model --prompt-template internlm2_chat
 ![](./XTuner23.png)   
 ![](./XTuner29.png) 
 
-## 进阶作业
+# 进阶作业
 
-- 将自我认知的模型上传到 OpenXLab，并将应用部署到 OpenXLab（优秀学员必做）
+## 模型上传到 OpenXLab  并将应用部署到 OpenXLab
   
 ### 1 OpenXLab·浦源平台介绍
 [OpenXLab](https://openxlab.org.cn/openplatform?lang=zh-CN) 浦源平台以开源为核心，旨在构建开源开放的人工智能生态，促进学术成果的开放共享。OpenXLab面向 AI 研究员和开发者提供 AI 领域的一站式服务平台，包含数据集中心、模型中心和应用中心，致力于推动人工智能对产学研各领域全面赋能，为构建人工智能开放生态，推动人工智能科研与技术突破、交叉创新和产业落地提供全方位的平台支撑。     
@@ -370,11 +370,25 @@ xtuner chat /root/ft/final_model --prompt-template internlm2_chat
   3. 编写代码
   4. 部署应用
 
-![](./XTuner31.png)    
+![](./XTuner31.png)        
 
+部署工作使用的三个平台，可查看如下链接了解详情：    
+
+- InternLM2 GitHub文档：https://github.com/InternLM/InternLM
+- Gradio官方说明文档：https://www.gradio.app/docs/interface
+- OpenXLab平台地址：https://openxlab.org.cn/home
+
+**Reference**    
+
+- [OpenXLab 平台介绍] (https://openxlab.org.cn/docs/intro.html)
+- [OpenXLab Gradio 应用教程](https://openxlab.org.cn/docs/apps/Gradio%E5%BA%94%E7%94%A8.html)
+- [OpenXLab 上传模型教程](https://openxlab.org.cn/docs/models/%E4%B8%8A%E4%BC%A0%E6%A8%A1%E5%9E%8B.html)
+
+  
 2.1 模型准备    
 
-用大基础作灶中 预训练好的InternLM2-Chat-1.8BB 模型，模型已准备好。   
+将模型下载到本地电脑：    
+
 
 2.2 上传模型   
 
@@ -401,17 +415,21 @@ git config --global user.name "cdl0726"
 git config --global user.email "cdl0726@outlook.com"
 ```
 
-2.2.2 拉取模型仓库   
+2.2.2 拉取模型仓库    
 
-首先需要在 OpenXLab 先创建一个空仓库，填写模型仓库的基本信息，包括仓库名称、任务类型、访问权限等。   
+![](./XTuner33.png)   
+
+首先需要在** OpenXLab 先创建一个空仓库**，填写模型仓库的基本信息，包括仓库名称、任务类型、访问权限等。   
 创建完成空的模型仓库后，找到该仓库的 git 地址并拉取该空仓库至本地，空仓库的地址在模型文件的下载按钮.   
+![](./XTuner40.1.png)
 
-找到空仓库下的 git 地址，执行 git clone 操作   
+找到空仓库下的 git 地址，执行 git clone 操作  
+
 ```
-git clone https://code.openxlab.org.cn/cdl0726/InternLM2-Chat-1.8B.git
+git clone https://code.openxlab.org.cn/cdl0726/Dennis-Personal-Assistant.git
 ```
 
-![](./XTuner33.png)
+![](./XTuner40.2.png)
 
 2.2.3 获取 Git Access Token   
 在 OpenXLab 的密钥管理添加 Git 令牌   
@@ -427,11 +445,14 @@ git clone https://code.openxlab.org.cn/cdl0726/InternLM2-Chat-1.8B.git
 
 在克隆的仓库目录中整理模型文件，即将你的模型文件放入至clone的目录中，并执行git push命令将模型推送至远程仓库   
 
-LFS管理大文件：使用 git lfs track 命令来标记你希望通过 Git LFS 管理的大文件。例如，您想要通过LFS管理所有的 .bin和 .model的模型文件，可以使用以下命令：   
+**LFS管理大文件：** 使用 git lfs track 命令来标记你希望通过 Git LFS 管理的大文件。例如，您想要通过LFS管理所有的 .bin和 .model的模型文件，可以使用以下命令：   
 ```
 git lfs track "*.bin"
 git lfs track "*.model"
+git lfs track "*.safetensors"
 ```
+
+![](./XTuner40.3.png)    
 
 标记LFS管理的文件后，提交更新的信息，执行 git push 上传模型，命令如下所示：   
 ```
