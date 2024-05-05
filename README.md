@@ -356,6 +356,15 @@ xtuner chat /root/ft/final_model --prompt-template internlm2_chat
 # 进阶作业
 
 ## 模型上传到 OpenXLab, 将应用部署到 OpenXLab
+
+模型上传    
+![](./XTuner35.5.png) 
+
+部署应用：
+![](./XTuner41.png)    
+![](./XTuner42.png) 
+
+具体操作如下：
   
 ### 1 OpenXLab·浦源平台介绍
 [OpenXLab](https://openxlab.org.cn/openplatform?lang=zh-CN) 浦源平台以开源为核心，旨在构建开源开放的人工智能生态，促进学术成果的开放共享。OpenXLab面向 AI 研究员和开发者提供 AI 领域的一站式服务平台，包含数据集中心、模型中心和应用中心，致力于推动人工智能对产学研各领域全面赋能，为构建人工智能开放生态，推动人工智能科研与技术突破、交叉创新和产业落地提供全方位的平台支撑。     
@@ -632,6 +641,8 @@ git push
   2.4.2 应用配置    
   2.4.3 应用构建和启动    
   2.4.4 应用公开    
+
+  ![](./XTuner42.png) 
   
 ---
 ## 复现多模态微调    
